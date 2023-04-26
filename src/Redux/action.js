@@ -125,10 +125,4 @@ export const getAddress = (city,addres,code,phone,user) => async (dispatch, getS
     type: "addressSuccess",
     payload: { data: {user,...userNew}, loading: true, error: "" },
   });
-  
 };
-
-
-
-
-
