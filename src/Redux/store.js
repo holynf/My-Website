@@ -11,6 +11,6 @@ const middleWare = [thunk];
 const store = createStore(
   reducers, 
   applyMiddleware(...middleWare)
-);
+); 
 
 export default store;

@@ -18,6 +18,7 @@ const Product = () => {
 
   const { productId } = useParams();
 
+  const location = useLocation()
   data.counts = count
   data.totalCount = count*data.price
   
@@ -27,6 +28,7 @@ const Product = () => {
   }, []);
 
   console.log(state);
+  console.log(location);
 
   return (
     <div className="d-flex gradient-custom" style={{ justifyContent: "center" , flexDirection:"column",minHeight:"50rem"}}>

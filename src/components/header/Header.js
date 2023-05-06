@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import Button from "react-bootstrap/esm/Button";
 import { Link, NavLink, p, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
@@ -16,7 +16,7 @@ import { cart } from "../../Redux/reducer";
 const Header = () => {
   const state = useSelector((state) => state.cart);
   const product = useSelector((state) => state.product);
-
+  const scroll = useRef()
   const { data } = useSelector((state) => state.token);
   const dispatch = useDispatch();
 
@@ -42,7 +42,7 @@ const Header = () => {
     req()
   },[])
 
-
+  console.log(scroll);
 
   return (
     <div>
@@ -54,7 +54,7 @@ const Header = () => {
 
           <Form className="d-flex">
             <Button as={Link} to="/cart">
-              <span>
+              <span ref={scroll}>
                 <svg
                   width="24"
                   height="24"
