@@ -5,8 +5,8 @@ import Container from "react-bootstrap/esm/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
-import Header from "../../components/header/Header";
-import { getStatus, getUser } from "../../Redux/action";
+import Header from "../components/header/Header";
+import { getStatus, getUser } from "../Redux/action";
 
 const Login = () => {
   const dispatch = useDispatch();

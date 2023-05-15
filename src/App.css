@@ -1,31 +1,19 @@
 .App {
   text-align: center;
+  height: 100%;
   background: linear-gradient(
     to right,
     rgba(106, 17, 203, 1),
     rgba(37, 117, 252, 1)
   );
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
 }
 
 .image {
   width: 10rem;
   height: 10rem;
-}
-
-/* .navbar { 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-
-
-a {
-  color: white;
-} */
-
-p {
-  color: white;
 }
 
 a {
@@ -124,4 +112,8 @@ h6 {
     rgba(106, 17, 203, 1),
     rgba(37, 117, 252, 1)
   );
+}
+
+.cartCount {
+  color : white;
 }

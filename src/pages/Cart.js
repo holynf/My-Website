@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/esm/Button";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cart, getPayment, getproduct, getTotal } from "../../Redux/action";
+import { cart, getPayment, getproduct, getTotal } from "../Redux/action";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Card from "react-bootstrap/Card";
@@ -9,29 +9,26 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/esm/Col";
 import { Link } from "react-router-dom";
 
-const CheckOut = () => {
-    const { data, loading, error } = useSelector((state) => state.payment);
-    const total = useSelector((state) => state.total);
-    const cart = useSelector((state) => state.cart);
-    const count = useSelector((state) => state.count);
-    const dispatch = useDispatch();
-  
-    useEffect(() => {
-      dispatch(getTotal(data));
-    }, []);
-  
-    console.log(data);
-    console.log(count);
-    console.log(total.data);
-  
-    return (
-      <div>
-        <Container>
-            <h1>CheckOut Page!</h1>
-          <Row>
-            {data.map((item) => {
-              return (
-                <div
+const Cart = () => {
+  const { data, loading, error } = useSelector((state) => state.payment);
+  const total = useSelector((state) => state.total);
+  const cart = useSelector((state) => state.cart);
+  const count = useSelector((state) => state.count);
+  const [set,setItem] = useState("")
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(getTotal(data));
+  }, []);
+
+  return (
+    <div>
+      <Container style={{ minHeight: "50rem" }}>
+        <Row>
+          {data.map((item) => {
+            return (
+              <div
                 className="cartLayer "
                 style={{ maxHeight: "14rem",margin:"2rem auto" }}
               >
@@ -88,7 +85,7 @@ const CheckOut = () => {
                         <h3>{item.counts}</h3>
                         <Button
                           onClick={() =>
-                            dispatch({ type: "add", payload: cart + 1 })
+                            dispatch({ type: "add", payload:  1 })
                           }
                         >
                           +
@@ -103,27 +100,28 @@ const CheckOut = () => {
                   </div>
                 </Col>
               </div>
-              );
-            })}
-          </Row>
-        </Container>
-  
-        <Container>
-          <div className="footer d-flex justify-content-around">  
-            <Button size="lg">Edit!</Button>
-            <Button size="lg">
-              Total Price :{" "}
-              {total.data.reduce((sum, item, index) => {
-                return (sum += item);
-              }, 0)}
-              $
-            </Button>
-            <Button size="lg">Done!</Button>
-          </div>
-        </Container>
-      </div>
-    );
-  };
+            );
+          })}
+        </Row>
 
+        <div className="footer">
+          <Button variant="dark" onClick={()=>{localStorage.removeItem("payment")
+         localStorage.removeItem("cart")
+        }}>Clear Cart items</Button>
+          <Button variant="dark">
+            Total Price :{" "}
+            {total.data.reduce((sum, item, index) => {
+              return (sum += item);
+            }, 0)}
+            $
+          </Button>
+          <Button as={Link} to="/address" variant="dark">
+            Continue
+          </Button>
+        </div>
+      </Container>
+    </div>
+  );
+};
 
-export default CheckOut
+export default Cart;

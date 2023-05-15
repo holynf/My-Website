@@ -51,6 +51,7 @@ export const getPayment = (data) => async (dispatch, getState) => {
   });
 
   help.push({ ...data });
+  localStorage.setItem("payment",JSON.stringify(help))
   dispatch({
     type: "paSuccess",
     payload: { data: [...help], loading: false, error: "" },

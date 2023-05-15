@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { signUp } from "../../Redux/action";
+import { signUp } from "../Redux/action";
 import Swal from 'sweetalert2'
 
 const SignUp = () => {

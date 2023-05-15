@@ -14,14 +14,17 @@ import { getStatus, getUser } from "../../Redux/action";
 import { cart } from "../../Redux/reducer";
 
 const Header = () => {
+  const navigate = useNavigate();
   const state = useSelector((state) => state.cart);
   const product = useSelector((state) => state.product);
-  const scroll = useRef()
   const { data } = useSelector((state) => state.token);
   const dispatch = useDispatch();
 
-  const token = JSON.parse(localStorage.getItem("token"));
+  localStorage.setItem("cart",state)
 
+
+
+  const token = JSON.parse(localStorage.getItem("token"));
   const req = async () => {
     try {
       const { data } = await axios.get(
@@ -42,7 +45,6 @@ const Header = () => {
     req()
   },[])
 
-  console.log(scroll);
 
   return (
     <div>
@@ -53,8 +55,8 @@ const Header = () => {
           </Navbar.Brand>
 
           <Form className="d-flex">
-            <Button as={Link} to="/cart">
-              <span ref={scroll}>
+            <Button as={Link} to="/cart" variant="dark">
+              <span>
                 <svg
                   width="24"
                   height="24"
@@ -78,7 +80,7 @@ const Header = () => {
                   />
                 </svg>
               </span>
-              <span className="count mx-2">{state}</span>
+              <span className="cartCount mx-2">{state ? state : ""}</span>
             </Button>
             {data.status === 200 ? (
               <div>
@@ -111,6 +113,8 @@ const Header = () => {
                     <Dropdown.Item
                       href="#/action-2"
                       className="d-flex justify-content-center"
+                      as={Link}
+                      to="/checkout"
                     >
                       Orders
                     </Dropdown.Item>
@@ -131,7 +135,7 @@ const Header = () => {
               </div>
             ) : (
               <Button variant="info" className="mx-3" as={Link} to="/login">
-                login
+                Login
               </Button>
             )}
           </Form>

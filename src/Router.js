@@ -1,15 +1,15 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Address from "./pages/address/Address";
-import Cart from "./pages/cart/Cart";
-import GetProfile from "./pages/getprofile/GetProfile";
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import NotFound from "./pages/notfound/NotFound";
-import Product from "./pages/product/Product";
-import SignUp from "./pages/signup/SignUp";
+import Address from "./pages/Address";
+import Cart from "./pages/Cart";
+import Profile from "./pages/Profile";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
+import Product from "./pages/Product/Product";
+import SignUp from "./pages/SignUp";
 import { useSelector } from "react-redux";
-import CheckOut from "./pages/checkout/CheckOut";
+import CheckOut from "./pages/CheckOut";
 import Setting from "./pages/setting/Setting";
 import ChangeProfile from "./pages/setting/changeProfile/ChangeProfile";
 import ChangePassword from "./pages/setting/changePassword/ChangePassword";
@@ -26,7 +26,7 @@ const Router = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/profile" element={<GetProfile />} />
+      <Route path="/profile" element={<Profile />} />
       <Route path="/address" element={token ? <Address /> : <Login />} />
       <Route path="/checkout" element={<CheckOut />} />
       <Route path="/setting" element={<Setting />} >
