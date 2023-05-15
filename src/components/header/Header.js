@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import Button from "react-bootstrap/esm/Button";
 import { Link, NavLink, p, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
@@ -14,14 +14,17 @@ import { getStatus, getUser } from "../../Redux/action";
 import { cart } from "../../Redux/reducer";
 
 const Header = () => {
+  const navigate = useNavigate();
   const state = useSelector((state) => state.cart);
   const product = useSelector((state) => state.product);
-
   const { data } = useSelector((state) => state.token);
   const dispatch = useDispatch();
 
-  const token = JSON.parse(localStorage.getItem("token"));
+  localStorage.setItem("cart",state)
 
+
+
+  const token = JSON.parse(localStorage.getItem("token"));
   const req = async () => {
     try {
       const { data } = await axios.get(
@@ -43,7 +46,6 @@ const Header = () => {
   },[])
 
 
-
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -53,7 +55,7 @@ const Header = () => {
           </Navbar.Brand>
 
           <Form className="d-flex">
-            <Button as={Link} to="/cart">
+            <Button as={Link} to="/cart" variant="dark">
               <span>
                 <svg
                   width="24"
@@ -78,7 +80,7 @@ const Header = () => {
                   />
                 </svg>
               </span>
-              <span className="count mx-2">{state}</span>
+              <span className="cartCount mx-2">{state ? state : ""}</span>
             </Button>
             {data.status === 200 ? (
               <div>
@@ -111,6 +113,8 @@ const Header = () => {
                     <Dropdown.Item
                       href="#/action-2"
                       className="d-flex justify-content-center"
+                      as={Link}
+                      to="/checkout"
                     >
                       Orders
                     </Dropdown.Item>
@@ -131,7 +135,7 @@ const Header = () => {
               </div>
             ) : (
               <Button variant="info" className="mx-3" as={Link} to="/login">
-                login
+                Login
               </Button>
             )}
           </Form>

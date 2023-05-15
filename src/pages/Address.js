@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/esm/Button";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cart, getAddress, getPayment, getproduct, getTotal, signUp } from "../../Redux/action";
+import { cart, getAddress, getPayment, getproduct, getTotal, signUp } from "../Redux/action";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";

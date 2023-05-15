@@ -2,16 +2,14 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../Redux/action";
+import { getUser } from "../Redux/action";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 
 const GetProfile = () => {
   const { data } = useSelector((state) => state.address);
-  const {
-    data: { user },
-  } = useSelector((state) => state.token);
+  const {data: { user }} = useSelector((state) => state.token);
   const token = JSON.parse(localStorage.getItem("token"));
   const [update, setUpdate] = useState({});
 
@@ -34,10 +32,6 @@ const GetProfile = () => {
   useEffect(() => {
     req();
   }, []);
-
-  console.log(user);
-  console.log(data);
-  console.log(update.user);
 
   return (
     <div>
@@ -66,54 +60,87 @@ const GetProfile = () => {
                     {user?.email}
                   </h4>
                 </h3>
-                <div className="d-flex justify-content-center" style={{flexDirection:"column"}}>
+                <div
+                  className="d-flex justify-content-center"
+                  style={{ flexDirection: "column" }}
+                >
                   <Container>
                     <Row>
-                    {update?.user && (
-                      <Col>
-                      <div className="d-flex">
-                        <h3>
-                          Mobile:
-                          <h4 style={{ color: "white", fontFamily: "cursive" }}>
-                            {update?.user.mobile}
-                          </h4>
-                        </h3>
-                        <h3>
-                          FirstName:
-                          <h4 style={{ color: "white", fontFamily: "cursive" }}>
-                            {update?.user.firstname}
-                          </h4>
-                        </h3>
-                        <h3>
-                          LastName:
-                          <h4 style={{ color: "white", fontFamily: "cursive" }}>
-                            {update?.user.lastname}
-                          </h4>
-                        </h3>
-                        <h3>
-                          City:
-                          <h4 style={{ color: "white", fontFamily: "cursive" }}>
-                            {update?.user.city}
-                          </h4>
-                        </h3>
-                        <h3>
-                          gender:
-                          <h4 style={{ color: "white", fontFamily: "cursive" }}>
-                            {update?.user.gender}
-                          </h4>
-                        </h3>
-                        <h3>
-                          Age:
-                          <h4 style={{ color: "white", fontFamily: "cursive" }}>
-                            {update?.user.age}
-                          </h4>
-                        </h3>
-                      </div>
-                      </Col>
-                    )}
+                      {update?.user && (
+                        <Col>
+                          <div className="d-flex">
+                            <h3>
+                              Mobile:
+                              <h4
+                                style={{
+                                  color: "white",
+                                  fontFamily: "cursive",
+                                }}
+                              >
+                                {update?.user.mobile}
+                              </h4>
+                            </h3>
+                            <h3>
+                              FirstName:
+                              <h4
+                                style={{
+                                  color: "white",
+                                  fontFamily: "cursive",
+                                }}
+                              >
+                                {update?.user.firstname}
+                              </h4>
+                            </h3>
+                            <h3>
+                              LastName:
+                              <h4
+                                style={{
+                                  color: "white",
+                                  fontFamily: "cursive",
+                                }}
+                              >
+                                {update?.user.lastname}
+                              </h4>
+                            </h3>
+                            <h3>
+                              City:
+                              <h4
+                                style={{
+                                  color: "white",
+                                  fontFamily: "cursive",
+                                }}
+                              >
+                                {update?.user.city}
+                              </h4>
+                            </h3>
+                            <h3>
+                              gender:
+                              <h4
+                                style={{
+                                  color: "white",
+                                  fontFamily: "cursive",
+                                }}
+                              >
+                                {update?.user.gender}
+                              </h4>
+                            </h3>
+                            <h3>
+                              Age:
+                              <h4
+                                style={{
+                                  color: "white",
+                                  fontFamily: "cursive",
+                                }}
+                              >
+                                {update?.user.age}
+                              </h4>
+                            </h3>
+                          </div>
+                        </Col>
+                      )}
                     </Row>
                   </Container>
-                      
+
                   <div className="d-flex">
                     {data.address ? (
                       <div className="d-flex">

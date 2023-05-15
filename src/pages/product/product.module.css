@@ -1,0 +1,148 @@
+.firstDiv {
+  justify-content: center;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  min-height: 50vh;
+  justify-content: center;
+}
+
+.cardHeader {
+  background-color: inherit;
+}
+
+.cardTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.productStyle {
+  background-color: white;
+  width: 70%;
+  height: 80vh;
+  margin-top: 2rem;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  gap: 2%;
+  padding: 5%;
+}
+
+.divison:first-child {
+  width: 75%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.divison:last-child {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chDivison {
+  width: 100%;
+  height: 40%;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chDivison:first-child h1{
+  display: none;
+}
+
+.textColor {
+  color: #28a8c2;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.notAvailable {
+  color: red;
+}
+
+.addDiv {
+  min-width: 12rem;
+  border-radius: 12px;
+  padding: 0.5rem;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.addButton {
+  border: none;
+  min-height: 3rem;
+  background: white;
+  display: flex;
+  justify-content: center;
+  gap: 1vw;
+  align-items: center;
+}
+
+.addMinusButton {
+  background-color: white;
+  color: black;
+  font-size: 30px;
+  border: none;
+}
+
+.addToCartButton {
+  border: 2px solid white;
+  min-height: 3rem;
+  border-radius: 12px;
+}
+
+/* Media Query :  */
+
+@media (min-width:375px) and (max-width:1200px) {
+  .card {
+    overflow: hidden;
+    display: none;
+    height: 50vh;
+    width: 20vw;
+  }
+  .addDiv *{
+    width: 35vw;
+    padding: 0;
+  }
+  .image{
+    width: 20vw;
+    height: 20vh;
+  }
+  .productStyle {
+    border-radius: 12px;
+    display: flex;
+  }
+  .divison:last-child{
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .divison:first-child{
+    width: 0;
+  }
+  .chDivison:first-child{
+    display: flex;
+    flex-direction: column;
+  }
+  .chDivison:first-child h1{
+    display: inline;
+    font-size: small;
+    margin: 1.5rem 0;
+  }
+}
