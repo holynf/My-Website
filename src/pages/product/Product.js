@@ -10,6 +10,8 @@ import Col from "react-bootstrap/esm/Col";
 import { cart } from "../../Redux/reducer";
 import style from "../Product/product.module.css";
 import { ListGroup, Spinner } from "react-bootstrap";
+import Swal from "sweetalert2";
+
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -28,8 +30,27 @@ const Product = () => {
     dispatch({ type: "coClear" });
   }, []);
 
-  console.log(state);
-  console.log(data);
+  const popUp =() =>{
+    if(count){
+      dispatch({ type: "add", payload: count });
+      dispatch(getPayment(data));
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Your item added!",
+        showConfirmButton: false,
+        timer: 1400,
+      });
+    }else{
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "your count is 0",
+        showConfirmButton: false,
+        timer: 1400,
+      });
+    }
+  }
 
   return (
     <div className={["d-flex", "gradient-custom", style.firstDiv].join(" ")}>
@@ -119,8 +140,7 @@ const Product = () => {
                 variant="info"
                   className={style.addToCartButton}
                   onClick={() => {
-                    dispatch({ type: "add", payload: count });
-                    dispatch(getPayment(data));
+                    popUp()
                   }}
                 >
                   Add To Cart!

@@ -5,10 +5,11 @@ import Header from "./components/header/Header";
 import Router from "./Router";
 
 function App() {
+  const token = JSON.parse(localStorage.getItem("token"));
   return (
     <div className="App">
-      <Header />
-      <Router />
+      <Header token={token}/>
+      <Router token={token}/>
     </div>
   );
 }
