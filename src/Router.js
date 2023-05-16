@@ -15,10 +15,7 @@ import ChangeProfile from "./pages/setting/changeProfile/ChangeProfile";
 import ChangePassword from "./pages/setting/changePassword/ChangePassword";
 import UploadAvatar from "./pages/setting/uploadAvatar/UploadAvatar";
 
-const Router = () => {
-  const token = JSON.parse(localStorage.getItem("token"));
-  const { data } = useSelector((state) => state.token);
-
+const Router = ({token}) => {  
   return (
     <Routes>
       <Route path="/" element={<Home />} />

@@ -1,62 +1,18 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import Header from "../components/header/Header";
-import { getStatus, getUser } from "../Redux/action";
+import { getLogIn, getStatus, getUser } from "../Redux/action";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState({});
-  const token = localStorage.getItem("token")
-  const req = async () => {
-    try {
-      const { data } = await axios.post(
-        "http://kzico.runflare.run/user/login",
-        {
-          email: `${user}`,
-          password: `${password}`,
-        }
-      );
-      localStorage.setItem("token", JSON.stringify(data.user.token));
-      dispatch(getUser(data));
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: `
-        Good job!
-        Welcome ${user},`,
-        showConfirmButton: false,
-        timer: 1500
-      })
-    } catch (error) {
-      console.log(error.response.data);
-      if(!token){
-      Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: `username or password is Wrong, 'Please Try Again!'`,
-        showConfirmButton: true,
-        timer: 8000
-      })
-    }
-      if(token){
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: `You Logged in before`,
-        showConfirmButton: true,
-        timer: 8000
-      })
-    }
-    }
-  };
-
+  
   return (
     <div>
       <section className="vh-100 gradient-custom">
@@ -95,7 +51,9 @@ const Login = () => {
                       className="btn btn-outline-light btn-lg px-5"
                       type="submit"
                       onClick={() => {
-                        req();
+                        if (user && password) {
+                          dispatch(getLogIn(user, password));
+                        }
                       }}
                     >
                       Login

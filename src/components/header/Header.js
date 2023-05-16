@@ -13,18 +13,13 @@ import axios from "axios";
 import { getStatus, getUser } from "../../Redux/action";
 import { cart } from "../../Redux/reducer";
 
-const Header = () => {
-  const navigate = useNavigate();
+const Header = ({token}) => {
   const state = useSelector((state) => state.cart);
   const product = useSelector((state) => state.product);
-  const { data } = useSelector((state) => state.token);
+  const {data} = useSelector((state) => state.token);
   const dispatch = useDispatch();
 
   localStorage.setItem("cart",state)
-
-
-
-  const token = JSON.parse(localStorage.getItem("token"));
   const req = async () => {
     try {
       const { data } = await axios.get(
@@ -45,6 +40,7 @@ const Header = () => {
     req()
   },[])
 
+  console.log(data);
 
   return (
     <div>

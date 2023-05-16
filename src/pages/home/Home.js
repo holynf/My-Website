@@ -26,7 +26,7 @@ const Home = () => {
         <div>
           <Spinner animation="border" variant="info" className={style.spinner}/> 
         </div> : error ? (
-        <h1>Error:{error}</h1>
+        <h1>{error}</h1>
       ) : data.map((item) => {
         return (
           <Col xs="6" xl="4" key={item._id} >

@@ -51,12 +51,11 @@ export const getPayment = (data) => async (dispatch, getState) => {
   });
 
   help.push({ ...data });
-  localStorage.setItem("payment",JSON.stringify(help))
+  localStorage.setItem("payment", JSON.stringify(help));
   dispatch({
     type: "paSuccess",
     payload: { data: [...help], loading: false, error: "" },
   });
-  
 };
 
 export const getTotal = (data) => async (dispatch, getState) => {
@@ -72,64 +71,63 @@ export const getTotal = (data) => async (dispatch, getState) => {
   });
 };
 
-export const signUp = (user,email,password,mobile) => async (dispatch, getState) => {
+export const signUp =
+  (user, email, password, mobile) => async (dispatch, getState) => {
+    const help = {};
+    help.userName = `${user}`;
+    help.userEmail = `${email}`;
+    help.userMobile = `${mobile}`;
+    help.userPassword = `${password}`;
 
-  const help = {};
-  help.userName = `${user}`
-  help.userEmail = `${email}`
-  help.userMobile = `${mobile}`
-  help.userPassword = `${password}`
-
-  dispatch({
-    type: "userSuccess",
-    payload: { data: {...help}, loading: false, error: "" },
-  });
-};
-
+    dispatch({
+      type: "userSuccess",
+      payload: { data: { ...help }, loading: false, error: "" },
+    });
+  };
 
 export const getUser = (data) => async (dispatch, getState) => {
-
   dispatch({
     type: "tokenSuccess",
-    payload: { data: {...data}, loading: false, error: "" },
+    payload: { data: { ...data }, loading: false, error: "" },
   });
-
-  dispatch({
-    type: "tokenLoading",
-    payload: { data: {...data}, loading: true, error: "" },
-  });
-
 };
 
+export const getAddress =
+  (city, addres, code, phone, user) => async (dispatch, getState) => {
+    const userNew = { ...user };
+    const help = {};
+    const state = getState().token;
+    help.addres = addres;
+    help.city = city;
+    help.code = code;
+    help.phone = phone;
 
-export const getStatus = () => async (dispatch, getState) => {
+    userNew.address = help;
 
-  dispatch({
-    type: "statusSuccess",
-    payload: { data: {}, loading: true, error: "" },
-  });
+    dispatch({
+      type: "addressSuccess",
+      payload: { data: { user, ...userNew }, loading: false, error: "" },
+    });
+  };
 
-};
-
-export const getAddress = (city,addres,code,phone,user) => async (dispatch, getState) => {
-  const userNew = {...user}
-  const help = {}
-  const state = getState().token
-  help.addres = addres
-  help.city = city
-  help.code = code
-  help.phone = phone
-  
-  userNew.address = help
-  
-  dispatch({
-    type: "addressSuccess",
-    payload: { data: {user,...userNew}, loading: true, error: "" },
-  });
-  
-};
-
-
-
+  export const getLogIn = (user, password) => async (dispatch, getState) => {
+    try {
+      const { data } = await axios.post("http://kzico.runflare.run/user/login", {
+        email: user,
+        password: password,
+      });
+      localStorage.setItem("token", JSON.stringify(data.user.token));
+      dispatch(getUser(data));
+      dispatch({
+        type: "successLogIn",
+        payLoad: { data: {...data}, error: "" },
+      });
+    } catch (error) {
+      dispatch({
+        type: "errorLogIn",
+        payLoad: { data: {}, error: "Failed" },
+      });
+    }
+  };
 
 
