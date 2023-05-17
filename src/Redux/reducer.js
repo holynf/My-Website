@@ -168,7 +168,7 @@ export const change = (
   }
 };
 
-export const logIn = (state = { data: {}, error: "" }, { type, payLoad }) => {
+export const logIn = (state = { data: {} ,error: "" }, { type, payLoad }) => {
   switch (type) {
     case "successLogIn":
       return payLoad;

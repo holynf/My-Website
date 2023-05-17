@@ -120,12 +120,12 @@ export const getAddress =
       dispatch(getUser(data));
       dispatch({
         type: "successLogIn",
-        payLoad: { data: {...data}, error: "" },
+        payLoad: { data: {...data} ,error: "" },
       });
     } catch (error) {
       dispatch({
         type: "errorLogIn",
-        payLoad: { data: {}, error: "Failed" },
+        payLoad: { data: {} ,error: "Your username or password is Wrong!" },
       });
     }
   };

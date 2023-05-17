@@ -130,8 +130,16 @@ const Product = () => {
                     </button>
                   ) : (
                     <button
-                      onClick={() => dispatch({ type: "coAdd" })}
-                      disabled
+                      onClick={() => {
+                      Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: `Out of Stock!
+                        `,
+                        showConfirmButton: false,
+                        timer: 1400,
+                      });
+                    }}
                       className={style.addMinusButton}
                     >
                       +

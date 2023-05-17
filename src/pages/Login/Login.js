@@ -1,20 +1,20 @@
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Header from "../../components/header/Header";
 import style from "../Login/login.module.css"
-import { getLogIn, getStatus, getUser } from "../../Redux/action";
+import { getLogIn } from "../../Redux/action";
 
 const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const { data, error } = useSelector((state) => state.logIn);
+  const { data ,error } = useSelector((state) => state.logIn);
+
 
   useEffect(() => {
     if (Object.keys(data).length) {
@@ -26,6 +26,7 @@ const Login = () => {
       dispatch({ type: "delLogIn", payLoad: { data: {}, error: "" } });
     }
   }, [data, error]);
+
   
   return (
     <div>

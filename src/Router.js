@@ -5,7 +5,7 @@ import Cart from "./pages/Cart/Cart";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/NotFound/NotFound";
 import Product from "./pages/Product/Product";
 import SignUp from "./pages/SignUp";
 import { useSelector } from "react-redux";
