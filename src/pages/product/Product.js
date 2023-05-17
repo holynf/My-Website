@@ -45,7 +45,9 @@ const Product = () => {
       Swal.fire({
         position: "center",
         icon: "warning",
-        title: "your count is 0",
+        title: `your count is 0
+        Please Add Product!
+        `,
         showConfirmButton: false,
         timer: 1400,
       });

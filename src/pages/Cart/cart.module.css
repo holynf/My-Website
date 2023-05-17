@@ -1,0 +1,44 @@
+.container {
+  min-height: 100vh;
+}
+
+.firstDiv {
+  max-height: 14rem;
+  margin: 2rem auto;
+}
+
+.cartTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: wrap;
+  color: white;
+  font-family: cursive;
+}
+
+.cartlayer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.h5 {
+  color: white;
+  font-family: cursive;
+}
+
+.buttonDiv {
+  background-color: black;
+  width: 10rem;
+  display: flex;
+  height: 3rem;
+  align-items: center;
+  outline: 0.4rem solid;
+  border-radius: 12px;
+}
+
+
+
+
+@media (min-width:375px) and (max-width:1200px) {
+    
+}

@@ -168,16 +168,15 @@ export const change = (
   }
 };
 
-export const logIn = (
-  state = { data: {}, error: "" },
-  { type, payLoad }
-) => {
+export const logIn = (state = { data: {}, error: "" }, { type, payLoad }) => {
   switch (type) {
     case "successLogIn":
       return payLoad;
     case "LoadingLogIn":
       return payLoad;
     case "errorLogIn":
+      return payLoad;
+    case "delLogIn":
       return payLoad;
     default:
       return state;
