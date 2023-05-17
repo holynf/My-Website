@@ -26,7 +26,7 @@
   background-color: white;
   width: 70%;
   height: 80vh;
-  margin-top: 2rem;
+  margin-top: 0.25rem;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
@@ -127,6 +127,7 @@
   .productStyle {
     border-radius: 12px;
     display: flex;
+    margin: 0 auto;
   }
   .divison:last-child{
     width: 100%;

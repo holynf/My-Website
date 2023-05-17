@@ -1,11 +1,11 @@
 import Button from "react-bootstrap/esm/Button";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cart, getPayment, getproduct, getTotal } from "../Redux/action";
+import { cart, getPayment, getproduct, getTotal } from "../../Redux/action";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Card from "react-bootstrap/Card";
-
+import style from "../Cart/cart.module.css";
 import Col from "react-bootstrap/esm/Col";
 import { Link } from "react-router-dom";
 
@@ -17,64 +17,37 @@ const Cart = () => {
   const [set,setItem] = useState("")
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch(getTotal(data));
   }, []);
 
   return (
     <div>
-      <Container style={{ minHeight: "50rem" }}>
+      <Container className={style.container}>
         <Row>
           {data.map((item) => {
             return (
-              <div
-                className="cartLayer "
-                style={{ maxHeight: "14rem",margin:"2rem auto" }}
-              >
+              <div className={[style.cartlayer,style.firstDiv].join(" ")}>
                 <Col xs="4">
-                  <div className="cartLayer">
+                  <div className={style.cartlayer}>
                     <img src={item.image} className="image mx-3" />
                   </div>
                 </Col>
                 <Col xs="4">
-                  <div className="cartLayer">
-                    
+                  <div className={style.cartlayer}>
                     <div className="mx-3">
                       <Card.Body>
-                        <Card.Title
-                          style={{
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "wrap",
-                            color:"white",
-                            fontFamily:"cursive"
-                          }}
-                        >
-                          {item.name}
-                        </Card.Title>
-
+                        <Card.Title className={style.cartTitle}>{item.name}</Card.Title>
                         <h4 className="my-3">{item.price}$</h4>
-                        <h5 style={{
-                            color:"white",
-                            fontFamily:"cursive"
-                          }}>{item.rating}⭐</h5>
+                        <h5 className={style.h5}>{item.rating}⭐</h5>
                       </Card.Body>
                     </div>
                   </div>
                 </Col>
                 <Col xs="4" className="d-flex justify-content-center">
-                  <div style={{
-                    backgroundColor:"black",
-                    width:"10rem",
-                    display:"flex",
-                    height:"3rem",
-                    alignItems:"center",
-                    outline:".4rem solid",
-                    borderRadius:"12px"
-                  }}>
+                  <div className={style.buttonDiv}>
                     <Button >
-                      <div style={{ display: "flex" }}>
+                      <div className="d-flex">
                         <Button
                           onClick={() =>
                             dispatch({ type: "reduce", payload: cart - 1 })

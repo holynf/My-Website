@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Address from "./pages/Address";
-import Cart from "./pages/Cart";
+import Cart from "./pages/Cart/Cart";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home/Home";
-import Login from "./pages/Login";
+import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound";
 import Product from "./pages/Product/Product";
 import SignUp from "./pages/SignUp";

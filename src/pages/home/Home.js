@@ -20,10 +20,10 @@ const Home = () => {
   }, []);
 
   return (
-    <Container>
+    <Container  >
       <Row>
         {loading ? 
-        <div>
+        <div className={style.divison} >
           <Spinner animation="border" variant="info" className={style.spinner}/> 
         </div> : error ? (
         <h1>{error}</h1>
