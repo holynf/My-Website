@@ -43,6 +43,7 @@ export const getproduct = (productId) => async (dispatch, getState) => {
 export const getPayment = (data) => async (dispatch, getState) => {
   const help = [];
   const last = getState().payment.data;
+  
 
   last.map((item) => {
     if (item) {
@@ -101,9 +102,7 @@ export const getAddress =
     help.city = city;
     help.code = code;
     help.phone = phone;
-
     userNew.address = help;
-
     dispatch({
       type: "addressSuccess",
       payload: { data: { user, ...userNew }, loading: false, error: "" },

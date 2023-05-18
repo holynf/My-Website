@@ -36,7 +36,10 @@
   border-radius: 12px;
 }
 
-
+.available{
+  color: green;
+  font: 12px;
+}
 
 
 @media (min-width:375px) and (max-width:1200px) {

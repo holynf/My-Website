@@ -37,7 +37,7 @@ export const cart = (state = 0, { type, payload }) => {
     case "reduce":
       return payload;
     case "clear":
-      return payload;
+      return state = 0;
     default:
       return state;
   }
@@ -57,7 +57,7 @@ export const count = (state = 0, { type, payload }) => {
 };
 
 export const payment = (
-  state = { data: [], loading: false, error: "" },
+  state = { data: []},
   { type, payload }
 ) => {
   switch (type) {
@@ -66,6 +66,8 @@ export const payment = (
     case "paSuccess":
       return payload;
     case "paFailed":
+      return payload;
+    case "paRemove":
       return payload;
     default:
       return state;

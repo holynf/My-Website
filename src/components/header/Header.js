@@ -17,6 +17,7 @@ const Header = ({token}) => {
   const state = useSelector((state) => state.cart);
   const product = useSelector((state) => state.product);
   const {data} = useSelector((state) => state.token);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   localStorage.setItem("cart",state)
