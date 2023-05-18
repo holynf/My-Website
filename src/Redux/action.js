@@ -43,6 +43,7 @@ export const getproduct = (productId) => async (dispatch, getState) => {
 export const getPayment = (data) => async (dispatch, getState) => {
   const help = [];
   const last = getState().payment.data;
+  
 
   last.map((item) => {
     if (item) {
@@ -101,9 +102,7 @@ export const getAddress =
     help.city = city;
     help.code = code;
     help.phone = phone;
-
     userNew.address = help;
-
     dispatch({
       type: "addressSuccess",
       payload: { data: { user, ...userNew }, loading: false, error: "" },
@@ -120,12 +119,12 @@ export const getAddress =
       dispatch(getUser(data));
       dispatch({
         type: "successLogIn",
-        payLoad: { data: {...data}, error: "" },
+        payLoad: { data: {...data} ,error: "" },
       });
     } catch (error) {
       dispatch({
         type: "errorLogIn",
-        payLoad: { data: {}, error: "Failed" },
+        payLoad: { data: {} ,error: "Your username or password is Wrong!" },
       });
     }
   };

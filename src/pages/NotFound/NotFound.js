@@ -1,8 +1,9 @@
 import React from "react";
+import style from "../NotFound/notFound.module.css"
 
 const NotFound = () => {
   return (
-    <div style={{width:"100%",height:"100%"}}>
+    <div className={style.firstDivision}>
       <section class="page_404">
         <div class="container">
           <div class="row">
@@ -11,7 +12,6 @@ const NotFound = () => {
                 <div class="four_zero_four_bg">
                   <h1 class="text-center ">404</h1>
                 </div>
-
                 <div class="contant_box_404">
                   <h3 class="h2">YOU ARE LOST!</h3>
                 </div>
