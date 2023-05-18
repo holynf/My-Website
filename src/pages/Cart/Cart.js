@@ -11,16 +11,6 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Cart = () => {
-
-  const help = [123,13151,123351,12311]
-
-  const resss = help.filter(item => {
-    return item > 1232
-  })
-
-  console.log(help);
-  console.log(resss);
-
   const { data, loading, error } = useSelector((state) => state.payment);
   const total = useSelector((state) => state.total);
   const cart = useSelector((state) => state.cart);
