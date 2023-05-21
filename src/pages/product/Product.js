@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {  Cart,  getAdd,  getCart,  getPayment,  getproduct} from "../../Redux/action";
 import Button from "react-bootstrap/Button";
@@ -14,12 +14,11 @@ import Swal from "sweetalert2";
 
 
 const Product = () => {
-  const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.product);
   const payment = useSelector((state) => state.payment);
-  const state = useSelector((state) => state.cart);
   const count = useSelector((state) => state.count);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
   const { productId } = useParams();
 
   data.counts = count;
@@ -41,6 +40,7 @@ const Product = () => {
         showConfirmButton: false,
         timer: 1400,
       });
+      navigate("/")
     }else{
       Swal.fire({
         position: "center",
@@ -54,6 +54,8 @@ const Product = () => {
     }
   }
 
+  console.log(payment.data);
+  
   return (
     <div className={["d-flex", "gradient-custom", style.firstDiv].join(" ")}>
       {loading ? <Spinner animation="border" variant="info" className={style.spinner}/> : error ? (
@@ -154,7 +156,7 @@ const Product = () => {
                   }}
                 >
                   Add To Cart!
-                </Button> 
+                </Button>
               </div>
             </div>
           )}

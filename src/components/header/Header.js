@@ -41,8 +41,6 @@ const Header = ({token}) => {
     req()
   },[])
 
-  console.log(data);
-
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

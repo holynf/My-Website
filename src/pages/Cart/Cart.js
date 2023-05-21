@@ -60,6 +60,8 @@ const Cart = () => {
     }
   }, [cart]);
 
+  console.log(data);
+
   return (
     <div>
       <Container className={style.container}>
