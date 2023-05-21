@@ -67,12 +67,15 @@ export const payment = (
       return payload;
     case "paFailed":
       return payload;
+    case "qtyCart":
+      return payload;
     case "paRemove":
       return payload;
     default:
       return state;
   }
 };
+
 
 export const total = (
   state = { data: [], loading: false, error: "" },

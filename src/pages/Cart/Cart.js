@@ -60,6 +60,7 @@ const Cart = () => {
     }
   }, [cart]);
 
+
   return (
     <div>
       <Container className={style.container}>
@@ -75,29 +76,30 @@ const Cart = () => {
                 <Col xs="4">
                   <div className={style.cartlayer}>
                     <div className="mx-3">
-                      <Card.Body>
+                      <Card.Body className={style.cardBody}>
                         <Card.Title className={style.cartTitle}>{item.name.slice(0,20)}</Card.Title>
-                        <span>
-                        price:
-                        <h4 className="my-3">{item.price}$</h4>
+                        <span className="d-flex justify-content-center my-3">
+                        <h4 className="m-2">Price: </h4>
+                        <h4 className="m-2">{item.price}$</h4>
                         </span>
-                        <p>
+                        <p className={["my-2",style.displayNone].join(" ")}>
                         {item.countInStock ? <h4 className={style.available}>Available:{" "}{item.countInStock}</h4> : <h4>Item is invalid!</h4>}
                         </p>
-                        <h5 className={style.h5}>{item.rating}⭐</h5>
+                        <h5 className={[style.h5,"mt-4",style.displayNone].join(" ")}>{item.rating}⭐</h5>
                       </Card.Body>
                     </div>
                   </div>
                 </Col>
                 <Col xs="4" className="d-flex justify-content-center">
                   <div className={style.buttonDiv}>
-                    <Button >
-                      <div className="d-flex">
+                    <span variant="none">
+                      <div className={style.countDiv}>
                         <Button
                           onClick={() =>
                             {subtraction(item._id,item.counts)
                             dispatch({ type: "reduce", payload: cart - 1 })}
                           }
+                          variant="none"
                         >
                           -
                         </Button>
@@ -107,6 +109,7 @@ const Cart = () => {
                             {sum(item._id,item.counts)
                             dispatch({ type: "add", payload:  1 })}
                           }
+                          variant="none"
                         >
                           +
                         </Button> : <Button
@@ -120,16 +123,18 @@ const Cart = () => {
                             timer: 1400,
                           });
                         }}
+                        variant="none"
                         >
                           +
                         </Button>}
                       </div>
-                    </Button>
-                    <Button size="sm">
-                      <span>
-                        Price:<h6>{item.totalCount}$</h6>
+                    </span>
+                    <span variant="none" className={style.displayNone}>
+                      <span className={["d-flex",style.displayNone].join(" ")}>
+                        <h5 className="mx-2">Price:</h5>
+                        <h6 className="mx-2">{item.totalCount}$</h6>
                       </span>
-                    </Button>
+                    </span>
                   </div>
                 </Col>
               </div>
@@ -137,7 +142,7 @@ const Cart = () => {
           })}
         </Row>
 
-        <div className="footer">
+        <div className={["footer",style.footer].join(" ")}>
           <Button variant="dark">
             Total Price :{" "}
             {total.data.reduce((sum, item, index) => {

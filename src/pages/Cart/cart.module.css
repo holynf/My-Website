@@ -5,14 +5,19 @@
 .firstDiv {
   max-height: 14rem;
   margin: 2rem auto;
+  background-color: white;
+  width: 90%;
+  border-radius: 12px;
+  padding: 2rem;
 }
+
+
 
 .cartTitle {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: wrap;
-  color: white;
-  font-family: cursive;
+  font-size: 1.5rem;
 }
 
 .cartlayer {
@@ -21,20 +26,29 @@
   align-items: center;
 }
 
-.h5 {
-  color: white;
-  font-family: cursive;
-}
 
 .buttonDiv {
-  background-color: black;
   width: 10rem;
   display: flex;
   height: 3rem;
   align-items: center;
-  outline: 0.4rem solid;
   border-radius: 12px;
 }
+
+.buttonDiv *{
+  font-size: large;
+}
+
+.countDiv{ 
+  display: flex;
+  align-items: center;
+}
+
+.footer{
+  width: 80%;
+  margin: 0 auto;
+}
+
 
 .available{
   color: green;
@@ -43,5 +57,31 @@
 
 
 @media (min-width:375px) and (max-width:1200px) {
-    
+  *{
+    font-size: x-small;
+  }
+  .firstDiv{
+    display: grid;
+    grid-template-columns: repeat(3,30%);
+    justify-content: center;
+    justify-items: center;
+    gap: 3rem;
+    width: 80%;
+  }
+  .cartlayer img { 
+    width: 15vh;
+    height: 15vh;
+  }
+  .displayNone{
+    display: none;
+  }
+  .cardBody {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .footer{
+    width: 80%;
+    margin: 0 auto;
+  }
 }

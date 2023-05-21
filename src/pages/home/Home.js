@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getData } from "../../Redux/action";
+import { getData, getDuplicate } from "../../Redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -14,6 +14,7 @@ import { Spinner } from "react-bootstrap";
 const Home = () => {
   const { data, loading, error } = useSelector((state) => state.data);
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     dispatch(getData());

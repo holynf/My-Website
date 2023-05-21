@@ -1,4 +1,5 @@
 import axios from "axios";
+import { json } from "react-router-dom";
 
 export const getData = () => async (dispatch, getState) => {
   try {
@@ -7,6 +8,7 @@ export const getData = () => async (dispatch, getState) => {
       payload: { data: [], loading: true, error: "" },
     });
     const { data } = await axios("http://kzico.runflare.run/product/");
+    localStorage.setItem("allProduct",JSON.stringify(data))
     dispatch({
       type: "success",
       payload: { data: [...data], loading: false, error: "" },
@@ -43,15 +45,22 @@ export const getproduct = (productId) => async (dispatch, getState) => {
 export const getPayment = (data) => async (dispatch, getState) => {
   const help = [];
   const last = getState().payment.data;
-  
-
+  if(last){
+    last.map((item,index)=>{
+      if(item._id == data._id){
+        last.splice(index,1)
+        data.counts +=  item.counts
+        data.totalCount += item.totalCount
+      }
+    })
+  }
   last.map((item) => {
     if (item) {
       help.push(item);
     }
   });
+  help.push({ ...data })
 
-  help.push({ ...data });
   localStorage.setItem("payment", JSON.stringify(help));
   dispatch({
     type: "paSuccess",
@@ -97,7 +106,6 @@ export const getAddress =
   (city, addres, code, phone, user) => async (dispatch, getState) => {
     const userNew = { ...user };
     const help = {};
-    const state = getState().token;
     help.addres = addres;
     help.city = city;
     help.code = code;
@@ -109,24 +117,22 @@ export const getAddress =
     });
   };
 
-  export const getLogIn = (user, password) => async (dispatch, getState) => {
-    try {
-      const { data } = await axios.post("http://kzico.runflare.run/user/login", {
-        email: user,
-        password: password,
-      });
-      localStorage.setItem("token", JSON.stringify(data.user.token));
-      dispatch(getUser(data));
-      dispatch({
-        type: "successLogIn",
-        payLoad: { data: {...data} ,error: "" },
-      });
-    } catch (error) {
-      dispatch({
-        type: "errorLogIn",
-        payLoad: { data: {} ,error: "Your username or password is Wrong!" },
-      });
-    }
-  };
-
-
+export const getLogIn = (user, password) => async (dispatch, getState) => {
+  try {
+    const { data } = await axios.post("http://kzico.runflare.run/user/login", {
+      email: user,
+      password: password,
+    });
+    localStorage.setItem("token", JSON.stringify(data.user.token));
+    dispatch(getUser(data));
+    dispatch({
+      type: "successLogIn",
+      payLoad: { data: { ...data }, error: "" },
+    });
+  } catch (error) {
+    dispatch({
+      type: "errorLogIn",
+      payLoad: { data: {}, error: "Your username or password is Wrong!" },
+    });
+  }
+};
