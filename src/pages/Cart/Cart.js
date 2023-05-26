@@ -65,7 +65,7 @@ const Cart = () => {
     <div>
       <Container className={style.container}>
         <Row>
-          {data?.map((item) => {
+          {data.length ? data?.map((item) => {
             return (
               <div className={[style.cartlayer,style.firstDiv].join(" ")}>
                 <Col xs="4">
@@ -139,16 +139,22 @@ const Cart = () => {
                 </Col>
               </div>
             );
-          })}
+          }) : <div className="mt-5 mb-5 text-white">
+            <h5>Your Cart is Empty!</h5>
+            </div>}
+          
         </Row>
 
         <div className={["footer",style.footer].join(" ")}>
           <Button variant="dark">
-            Total Price :{" "}
+            Total Price:{" "}
+            <span >
             {total.data.reduce((sum, item, index) => {
               const res = sum += item
               return (res);
             }, 0)}
+            {" "}
+            </span>
             $
           </Button>
 

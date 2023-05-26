@@ -12,7 +12,6 @@
 }
 
 
-
 .cartTitle {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -83,5 +82,12 @@
   .footer{
     width: 80%;
     margin: 0 auto;
+  }
+  .cardBody span h4:last-child{
+    color: green;
+  }
+  .cartTitle {
+    width: 100%;
+    font-size: 1rem;
   }
 }

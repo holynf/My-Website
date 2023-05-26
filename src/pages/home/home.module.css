@@ -64,8 +64,8 @@
 
 @media (min-width: 375px) and (max-width: 768px) {
   .cardimg {
-    width: 3rem;
-    height: 3rem;
+    width: 8vw;
+    height: 8vw;
   }
   .card {
     width: 30vw;
