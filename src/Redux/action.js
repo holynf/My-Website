@@ -8,7 +8,7 @@ export const getData = () => async (dispatch, getState) => {
       payload: { data: [], loading: true, error: "" },
     });
     const { data } = await axios("http://kzico.runflare.run/product/");
-    localStorage.setItem("allProduct",JSON.stringify(data))
+    localStorage.setItem("allProduct", JSON.stringify(data));
     dispatch({
       type: "success",
       payload: { data: [...data], loading: false, error: "" },
@@ -45,21 +45,21 @@ export const getproduct = (productId) => async (dispatch, getState) => {
 export const getPayment = (data) => async (dispatch, getState) => {
   const help = [];
   const last = getState().payment.data;
-  if(last){
-    last.map((item,index)=>{
-      if(item._id == data._id){
-        last.splice(index,1)
-        data.counts +=  item.counts
-        data.totalCount += item.totalCount
+  if (last) {
+    last.map((item, index) => {
+      if (item._id == data._id) {
+        last.splice(index, 1);
+        data.counts += item.counts;
+        data.totalCount += item.totalCount;
       }
-    })
+    });
   }
   last.map((item) => {
     if (item) {
       help.push(item);
     }
   });
-  help.push({ ...data })
+  help.push({ ...data });
 
   localStorage.setItem("payment", JSON.stringify(help));
   dispatch({
@@ -81,19 +81,6 @@ export const getTotal = (data) => async (dispatch, getState) => {
   });
 };
 
-export const signUp =
-  (user, email, password, mobile) => async (dispatch, getState) => {
-    const help = {};
-    help.userName = `${user}`;
-    help.userEmail = `${email}`;
-    help.userMobile = `${mobile}`;
-    help.userPassword = `${password}`;
-
-    dispatch({
-      type: "userSuccess",
-      payload: { data: { ...help }, loading: false, error: "" },
-    });
-  };
 
 export const getUser = (data) => async (dispatch, getState) => {
   dispatch({
@@ -136,3 +123,29 @@ export const getLogIn = (user, password) => async (dispatch, getState) => {
     });
   }
 };
+
+export const getSignUp =
+  (userName, email, password, mobile) => async (dispatch) => {
+    try {
+      const { data } = await axios.post(
+        "http://kzico.runflare.run/user/signup",
+        {
+          username: userName,
+          email: email,
+          password: password,
+          mobile: mobile,
+        }
+      );
+      dispatch({
+        type: "userSuccess",
+        payLoad: { data: { ...data }, error: "" },
+      });
+      console.log(data);
+    } catch (error) {
+      const sError = error?.response?.data;
+      dispatch({
+        type: "userError",
+        payLoad: { data: {}, error: sError },
+      });
+    }
+  };

@@ -94,7 +94,7 @@ export const total = (
 };
 
 export const user = (
-  state = { data: {}, loading: false, error: "" },
+  state = { data: {}, error: "" },
   { type, payload }
 ) => {
   switch (type) {
