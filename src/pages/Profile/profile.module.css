@@ -1,0 +1,66 @@
+.firstDiv {
+  height: 100vh;
+}
+
+.parendDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.imageDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.imageDiv img {
+  margin: 0 auto;
+  width: 9rem;
+  height: 9rem;
+}
+.imageDiv h6 {
+  font-size: 2rem;
+}
+
+.infoDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50vh;
+}
+
+.infoDiv tr th {
+  color: green;
+  font-size: 20px;
+  font-weight: 400;
+}
+.infoDiv tr td {
+  font-size: 18px;
+}
+
+.userInfo {
+  width: 50%;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 1rem;
+}
+
+.secUserInfo {
+  width: 100%;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 1rem;
+}
+
+.noneInfo {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  align-items: center;
+  margin: 0 auto
+}

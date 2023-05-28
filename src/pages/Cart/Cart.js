@@ -117,8 +117,7 @@ const Cart = () => {
                           Swal.fire({
                             position: "center",
                             icon: "warning",
-                            title: `Out of Stock!
-                            `,
+                            title: `Out of Stock!`,
                             showConfirmButton: false,
                             timer: 1400,
                           });
@@ -148,7 +147,7 @@ const Cart = () => {
         <div className={["footer",style.footer].join(" ")}>
           <Button variant="dark">
             Total Price:{" "}
-            <span >
+            <span>
             {total.data.reduce((sum, item, index) => {
               const res = sum += item
               return (res);

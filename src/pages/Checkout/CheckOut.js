@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/esm/Button";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cart, getPayment, getproduct, getTotal } from "../Redux/action";
+import { cart, getPayment, getproduct, getTotal } from "../../Redux/action";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Card from "react-bootstrap/Card";
@@ -19,10 +19,6 @@ const CheckOut = () => {
     useEffect(() => {
       dispatch(getTotal(data));
     }, []);
-  
-    console.log(data);
-    console.log(count);
-    console.log(total.data);
   
     return (
       <div>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { json } from "react-router-dom";
 
-export const getData = () => async (dispatch, getState) => {
+export const getData = () => async (dispatch) => {
   try {
     dispatch({
       type: "loading",
@@ -21,7 +21,7 @@ export const getData = () => async (dispatch, getState) => {
   }
 };
 
-export const getproduct = (productId) => async (dispatch, getState) => {
+export const getproduct = (productId) => async (dispatch) => {
   try {
     dispatch({
       type: "prLoading",
@@ -68,7 +68,7 @@ export const getPayment = (data) => async (dispatch, getState) => {
   });
 };
 
-export const getTotal = (data) => async (dispatch, getState) => {
+export const getTotal = (data) => async (dispatch) => {
   const help = [];
 
   data.map((item) => {
@@ -82,7 +82,7 @@ export const getTotal = (data) => async (dispatch, getState) => {
 };
 
 
-export const getUser = (data) => async (dispatch, getState) => {
+export const getUser = (data) => async (dispatch) => {
   dispatch({
     type: "tokenSuccess",
     payload: { data: { ...data }, loading: false, error: "" },
@@ -90,7 +90,7 @@ export const getUser = (data) => async (dispatch, getState) => {
 };
 
 export const getAddress =
-  (city, addres, code, phone, user) => async (dispatch, getState) => {
+  (city, addres, code, phone, user) => async (dispatch) => {
     const userNew = { ...user };
     const help = {};
     help.addres = addres;
@@ -104,7 +104,7 @@ export const getAddress =
     });
   };
 
-export const getLogIn = (user, password) => async (dispatch, getState) => {
+export const getLogIn = (user, password) => async (dispatch) => {
   try {
     const { data } = await axios.post("http://kzico.runflare.run/user/login", {
       email: user,
@@ -146,6 +146,28 @@ export const getSignUp =
       dispatch({
         type: "userError",
         payLoad: { data: {}, error: sError },
+      });
+    }
+  };
+
+export const getProfile = (token) => async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        "http://kzico.runflare.run/user/profile",
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch({
+        type: "profileSuccess",
+        payLoad: { data: { ...data }, error: "" },
+      });
+    } catch (error) {
+      dispatch({
+        type: "profileError",
+        payLoad: { data: {}, error: error },
       });
     }
   };

@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/esm/Button";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cart, getAddress, getPayment, getproduct, getTotal, signUp } from "../Redux/action";
+import { cart, getAddress, getPayment, getproduct, getTotal, signUp } from "../../Redux/action";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
@@ -13,11 +13,9 @@ const Address = () => {
   const [code, setCode] = useState("");
   const [phone, setPhone] = useState("");
   const {data: { user }} = useSelector((state) => state.token);
-  const add = useSelector((state) => state.address);
   
   const dispatch = useDispatch()
-  console.log(add.data); 
-  console.log(user);
+  
   return (
     <div>
       <form>

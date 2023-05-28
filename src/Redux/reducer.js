@@ -187,3 +187,14 @@ export const logIn = (state = { data: {} ,error: "" }, { type, payLoad }) => {
       return state;
   }
 };
+
+export const profile = (state = { data: {} ,error: "" }, { type, payLoad }) => {
+  switch (type) {
+    case "profileSuccess":
+      return payLoad;
+    case "profileError":
+      return payLoad;
+    default:
+      return state;
+  }
+};
