@@ -15,7 +15,6 @@ const Home = () => {
   const { data, loading, error } = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch(getData());
   }, []);

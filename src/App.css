@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  box-sizing: border-box;
   background: linear-gradient(
     to right,
     rgba(106, 17, 203, 1),

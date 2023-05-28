@@ -5,8 +5,8 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 
-import {data,product,cart,payment,total,logIn,count,user,token,status,address,change} from "./reducer";
-const reducers = combineReducers({data,product,logIn,cart,payment,total,count,user,token,status,address,change});
+import {data,product,cart,payment,total,logIn,count,user,token,profile,status,address,change} from "./reducer";
+const reducers = combineReducers({data,product,logIn,cart,profile,payment,total,count,user,token,status,address,change});
 const middleWare = [thunk];
 const allproduct = JSON.parse(localStorage.getItem("allProduct")) ? JSON.parse(localStorage.getItem("allProduct")) : ""
 const local = JSON.parse(localStorage.getItem("cart")) ? JSON.parse(localStorage.getItem("cart")) : 0

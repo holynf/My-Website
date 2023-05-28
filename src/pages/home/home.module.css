@@ -1,11 +1,3 @@
-/* .divison {
-  color:black;
-  min-height: 200vh;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-} */
-
 .divison {
   justify-content: center;
   flex-direction: row;
@@ -14,8 +6,6 @@
   display: flex;
   align-items: center;
 }
-
-
 
 .spinner {
   margin: 0 auto;
