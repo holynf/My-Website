@@ -29,7 +29,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 50vh;
+  height: min(50vh);
 }
 
 .infoDiv tr th {
@@ -63,4 +63,51 @@
   height: 50vh;
   align-items: center;
   margin: 0 auto
+}
+
+
+@media (min-width: 375px) and (max-width: 991px) {
+  .infoDiv tr th {
+    color: green;
+    font-size: 11px;
+    font-weight: 400;
+  }
+  .infoDiv tr td {
+    font-size: 6px;
+    font-weight: 500;
+  }
+  .infoDiv {
+    height: 40vh;
+    align-items: center;
+    justify-content: center;
+  }  
+  .mobileview{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .mobileview div{
+    height: 40vh;
+    width: 60vw;
+  }
+  .parendDiv{
+    width: 100%;
+    margin-inline: auto;
+  }
+  .infoDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: inherit;
+  }
+  .showbutton{
+    display: none;
+  }
+}
+
+
+@media (min-width:992px) and (min-width: 1680px) {
+  .infoDiv{
+    height: 40vh;
+  }
 }
