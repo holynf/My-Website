@@ -31,8 +31,8 @@ const GetProfile = () => {
               <img src={user?.image} alt="user image"/>
               <h6 className="my-4">{user?.username}</h6>
             </div>
-            <div className="col-9 d-flex">
-              <div className={["d-flex" ,"justify-content-center","mx-2",style.userInfo].join(" ")}>
+            <div className={["col-9" ," d-flex",style.mobileview].join(" ")}>
+              <div className={["d-flex" ,"justify-content-center","mx-3",style.userInfo].join(" ")}>
                 <Row>
                   {user && (
                     <Col>
@@ -94,7 +94,7 @@ const GetProfile = () => {
                         <td><span>{data.address?.phone}</span></td>
                       </tr>
                     </table>
-                    <Button className="my-5" onClick={()=>navigate("/cart")}>Show Cart</Button>
+                    <Button className={["my-5",style.showbutton].join(" ")} onClick={()=>navigate("/cart")}>Show Cart</Button>
                   </div>
                   ) : (
                     <div className={style.noneInfo}>
