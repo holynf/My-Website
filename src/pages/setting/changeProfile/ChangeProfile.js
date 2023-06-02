@@ -1,46 +1,48 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
-import { getAddress, getUser } from "../../../Redux/action";
+import { changeProfile, getAddress, getUser } from "../../../Redux/action";
 
 const ChangeProfile = () => {
   const token = JSON.parse(localStorage.getItem("token"));
-  const change = useSelector((state) => state.change);
   const dispatch = useDispatch();
-
+  const { chngProfData, chngProfError } = useSelector(
+    (state) => state.chngProfile
+  );
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState(0);
   const [city, setCity] = useState("");
 
-  const req = async () => {
-    try {
-      const { data } = await axios.put(
-        "http://kzico.runflare.run/user/change-profile",
-        {
-          firstname: `${firstname}`,
-          lastname: `${lastname}`,
-          gender: `${gender}`,
-          age: `${age}`,
-          city: `${city}`,
-        },
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-        );
-        dispatch({type:"changeSuccess",payload: { data: {...data}, loading: false, error: "" }})
-      console.log(data);
-    } catch (error) {
-      console.log(error.response.data);
+  useEffect(() => {
+    if (chngProfData) {
+      Swal.fire(chngProfData);
+      dispatch({
+        type: "delChngProf",
+        payLoad: { chngProfData: "", chngProfError: "" },
+      });
+    } else if (Object.keys(chngProfError).length) {
+      const error = chngProfError?.response?.data?.message;
+      if (error.length === 4) {
+        Swal.fire(`${error[0]} , ${error[1]} , ${error[2]} , ${error[3]}`);
+      } else if (error.length === 3) {
+        Swal.fire(`${error[0]} , ${error[1]} , ${error[2]}`);
+      } else if (error.length === 2) {
+        Swal.fire(`${error[0]} , ${error[1]}`);
+      } else {
+        Swal.fire(error[0]);
+      }
+      dispatch({
+        type: "delChngProf",
+        payLoad: { chngProfData: "", chngProfError: "" },
+      });
     }
-  };
+  }, [chngProfData, chngProfError]);
 
   return (
     <div>
@@ -104,7 +106,9 @@ const ChangeProfile = () => {
                       <Button
                         className="btn btn-outline-light btn-lg px-5"
                         type="submit"
-                        onClick={req}
+                        onClick={()=>{
+                          dispatch(changeProfile(firstname,lastname,age,gender,city,token))
+                        }}
                       >
                         Change!
                       </Button>

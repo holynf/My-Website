@@ -109,7 +109,7 @@ const Header = ({token}) => {
                       href="#/action-2"
                       className="d-flex justify-content-center"
                       as={Link}
-                      to="/checkout"
+                      to="/cart"
                     >
                       Orders
                     </Dropdown.Item>

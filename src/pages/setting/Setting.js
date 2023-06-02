@@ -1,17 +1,15 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import style from "./style.module.css"
 
 const Setting = () => {
   return (
     <div>
-      <div className="d-flex justify-content-around" style={{minHeight:"100vh",alignItems:"center"}}>
-        <section className="col-4 d-flex section" style={{
-          maxHeight:"10rem",
-          
-        }}>
-            <Link to="changeProfile" style={{color:"white",textDecoration:"none",fontFamily:"cursive"}} className="my-5">Change Profile</Link>
-            <Link to="changePassword"style={{color:"white",textDecoration:"none",fontFamily:"cursive"}} className="my-5">Change Password</Link>
-            <Link to="uploadAvatar"   style={{color:"white",textDecoration:"none",fontFamily:"cursive"}}className="my-5">Upload Avatar</Link>
+      <div className={["justify-content-around",style.firstDiv].join(" ")}>
+        <section className="col-4 d-flex section h-100">
+            <Link to="changeProfile" className={["my-5",style.link].join(" ")}>Change Profile</Link>
+            <Link to="changePassword" className={["my-5",style.link].join(" ")}>Change Password</Link>
+            <Link to="uploadAvatar"  className={["my-5",style.link].join(" ")}>Upload Avatar</Link>
         </section>
         <section className="col-8">
         <Outlet />

@@ -53,8 +53,6 @@ const Product = () => {
       });
     }
   }
-
-  console.log(payment.data);
   
   return (
     <div className={["d-flex", "gradient-custom", style.firstDiv].join(" ")}>

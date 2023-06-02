@@ -171,3 +171,91 @@ export const getProfile = (token) => async (dispatch) => {
       });
     }
   };
+
+export const changePassword = (oldPass, newPass, token) => async (dispatch) => {
+  try {
+    const { data } = await axios.put(
+      "http://kzico.runflare.run/user/change-password",
+      {
+        old_password: oldPass,
+        new_password: newPass,
+      },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const help = data.message;
+    dispatch({
+      type: "successChngPass",
+      payLoad: { chngPassData: help, chngPassError: "" },
+    });
+  } catch (error) {
+    const help2 = error?.response?.data?.message;
+    dispatch({
+      type: "errorChngPass",
+      payLoad: { chngPassData: "", chngPassError: help2 },
+    });
+  }
+};
+
+export const changeProfile = (firstname,lastname,gender,age,city,token) => async (dispatch) => {
+  try {
+    const { data } = await axios.put(
+      "http://kzico.runflare.run/user/change-profile",
+      {
+        firstname: firstname,
+        lastname: lastname,
+        gender: gender,
+        age: age,
+        city: city,
+      },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+      );
+    const help = data.message;
+    dispatch({
+      type: "successChngProf",
+      payLoad: { chngProfData: help, chngProfError: "" },
+    });
+  } catch (error) {
+    const help2 = error?.response?.data?.message;
+    dispatch({
+      type: "errorChngProf",
+      payLoad: { chngProfData: "", chngProfError: help2 },
+    });
+  }
+};
+
+
+export const uploadPhoto = (pic, token) => async (dispatch, getState) => {
+  const formData = new FormData();
+  formData.append("profile-image", pic);
+  try {
+    const { data } = await axios.post(
+      "http://kzico.runflare.run/user/profile-image",
+      formData,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const help = data.message;
+    dispatch({
+      type: "successUplPhoto",
+      payLoad: { uplPhotoData: help, uplPhotoError: "" },
+    });
+  } catch (error) {
+    const help2 = error?.response?.data?.message;
+    dispatch({
+      type: "errorUplPhoto",
+      payLoad: { uplPhotoData: "", uplPhotoError: help2 },
+    });
+  }
+};
+

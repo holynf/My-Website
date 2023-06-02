@@ -1,12 +1,36 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
+import { uploadPhoto } from "../../../Redux/action";
 
 const UploadAvatar = () => {
+  const dispatch = useDispatch();
+  const [pic, setPic] = useState(null);
+  const token = JSON.parse(localStorage.getItem("token"));
+  const { uplPhotoData, uplPhotoError } = useSelector(
+    (state) => state.uplPhoto
+  );
+
+  useEffect(() => {
+    if (uplPhotoData) {
+      Swal.fire(uplPhotoData);
+      dispatch({
+        type: "delUplPhoto",
+        payLoad: { uplPhotoData: "", uplPhotoError: "" },
+      });
+    } else if (uplPhotoError) {
+      Swal.fire(uplPhotoError);
+      dispatch({
+        type: "delUplPhoto",
+        payLoad: { uplPhotoData: "", uplPhotoError: "" },
+      });
+    }
+  }, [uplPhotoData, uplPhotoError]);
+
   return (
     <div>
       <div>
@@ -27,11 +51,13 @@ const UploadAvatar = () => {
                       <div className="form-outline form-white mb-4">
                         <input
                           type="file"
+                          onChange={(e) => setPic(e.target.files[0])}
                         />
                       </div>
                       <Button
                         className="btn btn-outline-light btn-lg px-5"
                         type="submit"
+                        onClick={() => dispatch(uploadPhoto(pic, token))}
                       >
                         Upload
                       </Button>

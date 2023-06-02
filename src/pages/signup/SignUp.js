@@ -48,9 +48,9 @@ const SignUp = () => {
 
   return (
     <div>
-      <form onSubmit={e => e.preventDefault()}>
-        <section className="vh-100 gradient-custom">
-          <div className="container py-5 h-75 col-md-12">
+      <form onSubmit={e => e.preventDefault()} >
+        <section className={["gradient-custom",style.section].join(" ")}>
+          <div className={["container","py-5","h-75","col-md-12",style.container].join(" ")}>
             <div className="row d-flex justify-content-center h-50">
               <div className="col-sm-12 col-md-8 col-lg-6 col-xl-5">
                 <div className={["card","bg-dark","text-white",style.card].join(" ")}>
@@ -101,7 +101,6 @@ const SignUp = () => {
                           onChange={(e) => setMobile(e.target.value)}
                         />
                       </div>
-                      <div className={style.buttonDiv}>
                       <div className={style.signUpButton}>
                         <button
                           className="btn btn-outline-light"
@@ -115,9 +114,8 @@ const SignUp = () => {
                           type="submit"
                           onClick={()=>navigate("/login")}
                         >
-                          Have a account? Login!
+                          Login Now!
                         </button>
-                      </div>
                       </div>
                     </div>
                   </div>

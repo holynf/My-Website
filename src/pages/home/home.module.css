@@ -52,7 +52,7 @@
   white-space: nowrap;
 }
 
-@media (min-width: 375px) and (max-width: 768px) {
+@media (width <= 768px) {
   .cardimg {
     width: 8vw;
     height: 8vw;
@@ -71,7 +71,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1200px) {
+@media ( 768px <= width <= 1200px) {
   .cardimg {
     width: 10rem;
     height: 10rem;

@@ -198,3 +198,51 @@ export const profile = (state = { data: {} ,error: "" }, { type, payLoad }) => {
       return state;
   }
 };
+
+export const chngPass = (
+  state = { chngPassData: "", chngPassError: "" },
+  { type, payLoad }
+) => {
+  switch (type) {
+    case "successChngPass":
+      return payLoad;
+    case "errorChngPass":
+      return payLoad;
+    case "delChngPass":
+      return payLoad;
+    default:
+      return state;
+  }
+};
+
+export const chngProfile = (
+  state = { chngProfData: "", chngProfError: "" },
+  { type, payLoad }
+) => {
+  switch (type) {
+    case "successChngProf":
+      return payLoad;
+    case "errorChngProf":
+      return payLoad;
+    case "delChngProf":
+      return payLoad;
+    default:
+      return state;
+  }
+};
+
+export const uplPhoto = (
+  state = { uplPhotoData: "", uplPhotoError: "" },
+  { type, payLoad }
+) => {
+  switch (type) {
+    case "successUplPhoto":
+      return payLoad;
+    case "errorUplPhoto":
+      return payLoad;
+    case "delUplPhoto":
+      return payLoad;
+    default:
+      return state;
+  }
+};
