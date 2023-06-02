@@ -5,120 +5,89 @@ import { cart, getPayment, getproduct, getTotal } from "../../Redux/action";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Card from "react-bootstrap/Card";
-
+import style from "../Checkout/checkout.module.css";
 import Col from "react-bootstrap/esm/Col";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cart from "../Cart/Cart";
+import Profile from "../Profile/Profile";
 
 const CheckOut = () => {
-    const { data, loading, error } = useSelector((state) => state.payment);
-    const total = useSelector((state) => state.total);
-    const cart = useSelector((state) => state.cart);
-    const count = useSelector((state) => state.count);
-    const dispatch = useDispatch();
-  
-    useEffect(() => {
-      dispatch(getTotal(data));
-    }, []);
-  
-    return (
-      <div>
-        <Container>
-          <Row>
-            {data.map((item) => {
-              return (
-                <div
-                className="cartLayer "
-                style={{ maxHeight: "14rem",margin:"2rem auto" }}
-              >
-                <Col xs="4">
-                  <div className="cartLayer">
-                    <img src={item.image} className="image mx-3" />
-                  </div>
-                </Col>
-                <Col xs="4">
-                  <div className="cartLayer">
-                    
-                    <div className="mx-3">
-                      <Card.Body>
-                        <Card.Title
-                          style={{
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "wrap",
-                            color:"white",
-                            fontFamily:"cursive"
-                          }}
-                        >
-                          {item.name}
-                        </Card.Title>
+  const { data } = useSelector((state) => state.address);
+  const total = useSelector((state) => state.total);
+  const cart = useSelector((state) => state.cart);
+  const count = useSelector((state) => state.count);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-                        <h4 className="my-3">{item.price}$</h4>
-                        <h5 style={{
-                            color:"white",
-                            fontFamily:"cursive"
-                          }}>{item.rating}⭐</h5>
-                      </Card.Body>
-                    </div>
-                  </div>
-                </Col>
-                <Col xs="4" className="d-flex justify-content-center">
-                  <div style={{
-                    backgroundColor:"black",
-                    width:"10rem",
-                    display:"flex",
-                    height:"3rem",
-                    alignItems:"center",
-                    outline:".4rem solid",
-                    borderRadius:"12px"
-                  }}>
-                    <Button >
-                      <div style={{ display: "flex" }}>
-                        <Button
-                          onClick={() =>
-                            dispatch({ type: "reduce", payload: cart - 1 })
-                          }
-                        >
-                          -
-                        </Button>
-                        <h3>{item.counts}</h3>
-                        <Button
-                          onClick={() =>
-                            dispatch({ type: "add", payload: cart + 1 })
-                          }
-                        >
-                          +
-                        </Button>
-                      </div>
-                    </Button>
-                    <Button size="sm">
-                      <span>
-                        Price:<h6>{item.totalCount}$</h6>
-                      </span>
-                    </Button>
-                  </div>
-                </Col>
-              </div>
-              );
-            })}
-          </Row>
-        </Container>
-  
-        <Container>
-          <div className="footer d-flex justify-content-around">  
-            <Button size="lg">Edit!</Button>
-            <Button size="lg">
-              Total Price :{" "}
-              {total.data.reduce((sum, item, index) => {
-                return (sum += item);
-              }, 0)}
-              $
-            </Button>
-            <Button size="lg">Done!</Button>
-          </div>
-        </Container>
+  useEffect(() => {
+    dispatch(getTotal(data));
+  }, []);
+
+  return (
+    <div className="d-flex">
+      <div className="col-6 w-50">
+        <Cart />
       </div>
-    );
-  };
+      <div className="col-6">
+        <div className="single_advisor_details_info">
+          <div
+            className={[
+              "d-flex",
+              "justify-content-center",
+              "mx-3",
+              style.secUserInfo,
+            ].join(" ")}
+          >
+            {data.address ? (
+              <div className={[style.infoDiv, "p-5"].join(" ")}>
+                <table>
+                  <tr>
+                    <th>Address:</th>
+                    <td>
+                      <span>{data.address?.addres}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>City:</th>
+                    <td>
+                      <span>{data.address?.city}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>PostalCode:</th>
+                    <td>
+                      <span>{data.address?.code}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Mobile:</th>
+                    <td>
+                      <span>{data.address?.phone}</span>
+                    </td>
+                  </tr>
+                </table>
+                <Button
+                  className={["my-5", style.showbutton].join(" ")}
+                  onClick={() => navigate("/cart")}
+                >
+                  Show Cart
+                </Button>
+              </div>
+            ) : (
+              <div className={style.noneInfo}>
+                <h4 className="m-3">
+                  "Please fill the address information cart!"
+                </h4>
+                <Button className="m-3" onClick={() => navigate("/address")}>
+                  Address information cart
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-
-export default CheckOut
+export default CheckOut;

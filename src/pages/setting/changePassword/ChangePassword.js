@@ -1,40 +1,38 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
-import { getAddress, getUser } from "../../../Redux/action";
+import { changePassword, getAddress, getUser } from "../../../Redux/action";
 
 const ChangePassword = () => {
-  const [oldpassword, setoldPassword] = useState("");
-  const [newpassword, setnewPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [newPass, setNewPass] = useState("");
   const [show, setShow] = useState(false);
 
   const token = JSON.parse(localStorage.getItem("token"));
-  const change = useSelector((state) => state.change);
   const dispatch = useDispatch();
+  const { chngPassData, chngPassError } = useSelector(
+    (state) => state.chngPass
+  );
 
-  const req = async () => {
-    try {
-      const { data } = await axios.put(
-        "http://kzico.runflare.run/user/change-password",
-        {
-          old_password: `${oldpassword}`,
-          new_password: `${newpassword}`,
-        },
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(data);
-    } catch (error) {
-      console.log(error.response.data);
+  useEffect(() => {
+    if (chngPassData) {
+      Swal.fire(chngPassData);
+      dispatch({
+        type: "delChngPass",
+        payLoad: { chngPassData: "", chngPassError: "" },
+      });
+    } else if (chngPassError) {
+      Swal.fire(chngPassError);
+      dispatch({
+        type: "delChngPass",
+        payLoad: { chngPassData: "", chngPassError: "" },
+      });
     }
-  };
+  }, [chngPassData, chngPassError]);
 
   return (
     <div>
@@ -59,7 +57,7 @@ const ChangePassword = () => {
                           id="typeEmailX"
                           className="form-control form-control-lg"
                           placeholder="Old Password"
-                          onChange={(e) => setoldPassword(e.target.value)}
+                          onChange={(e) => setPassword(e.target.value)}
                         />
                       </div>
 
@@ -69,7 +67,7 @@ const ChangePassword = () => {
                           id="typeEmailX"
                           className="form-control form-control-lg"
                           placeholder="New Password"
-                          onChange={(e) => setnewPassword(e.target.value)}
+                          onChange={(e) => setNewPass(e.target.value)}
                         />
                       </div>
 
@@ -91,7 +89,11 @@ const ChangePassword = () => {
                       <Button
                         className="btn btn-outline-light btn-lg px-5 mt-5"
                         type="submit"
-                        onClick={req}
+                        onClick={() => {
+                          if (password && newPass) {
+                            dispatch(changePassword(password, newPass, token));
+                          }
+                        }}
                       >
                         Change Password!
                       </Button>

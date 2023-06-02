@@ -55,7 +55,7 @@
 }
 
 
-@media (min-width:375px) and (max-width:1200px) {
+@media (375px <= width <= 1200px) {
   *{
     font-size: x-small;
   }
