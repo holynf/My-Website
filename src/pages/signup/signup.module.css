@@ -1,5 +1,5 @@
 .card {
-  height: 80vh;
+  height: 80dvh;
   border-radius: 1rem;
 }
 
@@ -23,10 +23,10 @@
 
 @media (width <= 992px) {
   .card {
-    height: 100%;
+    height: 100svh;
   }
   .section{
-    height: min(150vh);
+    height: min(120dvh);
   }
 }
 
@@ -35,6 +35,6 @@
     height: 90%;
   }
   .section{
-    height: min(130vh);
+    height: min(110dvh);
   }
 }

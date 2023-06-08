@@ -1,4 +1,4 @@
-import React from "react";
+import React , {lazy , Suspense} from "react";
 import { Route, Routes } from "react-router-dom";
 import Address from "./pages/Address/Address";
 import Cart from "./pages/Cart/Cart";
@@ -17,22 +17,24 @@ import UploadAvatar from "./pages/setting/uploadAvatar/UploadAvatar";
 
 const Router = ({token}) => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/product/:productId" element={<Product />} />
-      <Route path="/cart" element={<Cart />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/profile" element={token ? <Profile /> : <Login />} />
-      <Route path="/address" element={token ? <Address /> : <Login />} />
-      <Route path="/checkout" element={<CheckOut />} />
-      <Route path="/setting" element={<Setting />} >
-        <Route path="changeProfile" element={token ? <ChangeProfile /> : <Login />} />
-        <Route path="changePassword" element={token ? <ChangePassword /> : <Login />} />
-        <Route path="uploadAvatar" element={token ? <UploadAvatar /> : <Login />} />
-      </Route>
-      <Route path="/*" element={<NotFound />} />
-    </Routes>
+    <Suspense>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/product/:productId" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={token ? <Profile /> : <Login />} />
+        <Route path="/address" element={token ? <Address /> : <Login />} />
+        <Route path="/checkout" element={<CheckOut />} />
+        <Route path="/setting" element={<Setting />} >
+          <Route path="changeProfile" element={token ? <ChangeProfile /> : <Login />} />
+          <Route path="changePassword" element={token ? <ChangePassword /> : <Login />} />
+          <Route path="uploadAvatar" element={token ? <UploadAvatar /> : <Login />} />
+        </Route>
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 };
 
