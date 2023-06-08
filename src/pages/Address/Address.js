@@ -70,7 +70,7 @@ const Address = () => {
                         className="btn btn-outline-light btn-lg px-5"
                         onClick={()=>dispatch(getAddress(city, addres, code, phone,user))}
                         as={Link}
-                        to="/checkout"
+                        to="/profile"
                       >
                         Next
                       </Button>
