@@ -1,19 +1,22 @@
 import React , {lazy , Suspense} from "react";
 import { Route, Routes } from "react-router-dom";
-import Address from "./pages/Address/Address";
-import Cart from "./pages/Cart/Cart";
-import Profile from "./pages/Profile/Profile";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
-import NotFound from "./pages/NotFound/NotFound";
-import Product from "./pages/Product/Product";
-import SignUp from "./pages/signup/SignUp";
 import { useSelector } from "react-redux";
-import CheckOut from "./pages/Checkout/CheckOut";
-import Setting from "./pages/setting/Setting";
-import ChangeProfile from "./pages/setting/changeProfile/ChangeProfile";
-import ChangePassword from "./pages/setting/changePassword/ChangePassword";
-import UploadAvatar from "./pages/setting/uploadAvatar/UploadAvatar";
+
+const Home = lazy(()=>import("./pages/Home/Home"))
+const Login = lazy(()=>import("./pages/Login/Login"))
+const NotFound = lazy(()=>import("./pages/NotFound/NotFound"))
+const Address = lazy(()=>import("./pages/Address/Address"))
+const Cart = lazy(()=>import("./pages/Cart/Cart"))
+const Profile = lazy(()=>import("./pages/Profile/Profile"))
+const Product = lazy(()=>import("./pages/Product/Product"))
+const SignUp = lazy(()=>import("./pages/signup/SignUp"))
+const CheckOut = lazy(()=>import("./pages/Checkout/CheckOut"))
+const Setting = lazy(()=>import("./pages/setting/Setting"))
+const ChangeProfile = lazy(()=>import("./pages/setting/changeProfile/ChangeProfile"))
+const ChangePassword = lazy(()=>import("./pages/setting/changePassword/ChangePassword"))
+const UploadAvatar = lazy(()=>import("./pages/setting/uploadAvatar/UploadAvatar"))
+
+
 
 const Router = ({token}) => {
   return (
