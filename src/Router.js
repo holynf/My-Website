@@ -20,7 +20,7 @@ const UploadAvatar = lazy(()=>import("./pages/setting/uploadAvatar/UploadAvatar"
 
 const Router = ({token}) => {
   return (
-    <Suspense>
+    <Suspense fallback={<h1>Loading ...</h1>}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:productId" element={<Product />} />
