@@ -27,6 +27,7 @@
     "sweetalert2": "^11.7.3",
     "swiper": "^9.4.1",
     "web-vitals": "^2.1.4"
+    
   },
   "scripts": {
     "start": "react-scripts start",
