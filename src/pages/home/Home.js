@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Header from "../../components/header/Header";
 import style from "../Home/home.module.css";
 import { Spinner } from "react-bootstrap";
+import Landing from "../Landing/Landing";
 
 const Home = () => {
   const { data, loading, error } = useSelector((state) => state.data);
@@ -20,7 +21,11 @@ const Home = () => {
   }, []);
 
   return (
-    <Container  >
+    <div>
+      <Container  >
+    
+      <Landing/>
+      
       <Row>
         {loading ? 
         <div className={style.divison} >
@@ -68,6 +73,8 @@ const Home = () => {
       })}
       </Row>
     </Container>
+    </div>
+    
   );
 };
 

@@ -1,26 +1,21 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import Button from "react-bootstrap/esm/Button";
 import { Link, NavLink, p, useNavigate } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import axios from "axios";
 import { getStatus, getUser } from "../../Redux/action";
 import { cart } from "../../Redux/reducer";
+import logo from "../../images/logo.png";
+import aos from "aos";
+import "aos/dist/aos.css";
 
-const Header = ({token}) => {
+const Header = ({ token }) => {
   const state = useSelector((state) => state.cart);
   const product = useSelector((state) => state.product);
-  const {data} = useSelector((state) => state.token);
+  const { data } = useSelector((state) => state.token);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  localStorage.setItem("cart", state);
 
-  localStorage.setItem("cart",state)
   const req = async () => {
     try {
       const { data } = await axios.get(
@@ -37,13 +32,14 @@ const Header = ({token}) => {
     }
   };
 
-  useEffect(()=>{
-    req()
-  },[])
+  useEffect(() => {
+    req();
+    aos.init({ duration: 1000 });
+  }, []);
 
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      {/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand as={Link} to="/">
             Home
@@ -135,7 +131,106 @@ const Header = ({token}) => {
             )}
           </Form>
         </Container>
-      </Navbar>
+      </Navbar> */}
+
+      <div className="flex h-36 justify-around items-center gap-20 md:gap-5 bg-blue-950 ">
+        <span
+          className="w-16 md:w-24 flex items-center gap-2 md:gap-10 border-slate-200 drop-shadow-2xl"
+          data-aos="fade-left"
+        >
+          <img
+            src={logo}
+            alt="Logo"
+            className="bg-cyan-600 p-1 w-12 md:w-14 rounded-full "
+          />
+          <span className="text-2xl text-white">Mosify</span>
+        </span>
+        <div className="hidden sm:flex rounded justify-center gap-10 items-center text-white">
+          <Link to="/" className="no-underline text-white">
+            Home
+          </Link>
+          <span>About Us</span>
+
+          <span className="relative">
+            <span>Blog</span>
+            <p
+              style={{
+                position: "absolute",
+                right: "-2rem",
+                top: "-1rem",
+                borderRadius: "12px",
+              }}
+              className="bg-orange-300  flex text-white  px-1 items-center"
+            >
+              <span className="text-sm">New!</span>
+            </p>
+          </span>
+        </div>
+
+        <div className="flex sm:hidden text-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+            />
+          </svg>
+        </div>
+        <div className="hidden sm:flex items-center gap-3" data-aos="fade-right">
+          <div className="hidden sm:flex sm:order-3 bg-cyan-600 p-2 rounded-lg text-white gap-3 items-center drop-shadow-2xl">
+            <Link className="text-white" to="/cart">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                />
+              </svg>
+            </Link>
+            <span>|</span>
+            <span className=" hover:text-slate-300">
+              <Link className="no-underline	text-white" to="/login">
+                {data.status === 200 ? (
+                  <div>
+                    <section variant="info" className="mx-3">
+                      <p
+                        id="dropdown-basic-button"
+                        title={data.user.email}
+                      >
+                    
+                          <button className="w-100" as={Link} to="/profile">
+                            <img
+                              src={data.user.image}
+                              style={{ width: "1rem", height: "1rem" }}
+                              className="mx-2"
+                            />
+                            {data.user.username}
+                          </button>
+                        
+                        
+                      </p>
+                    </section>
+                  </div>
+                ) : "Get access to Your Account"}
+              </Link>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
