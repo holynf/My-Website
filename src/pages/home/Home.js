@@ -11,6 +11,7 @@ import Header from "../../components/header/Header";
 import style from "../Home/home.module.css";
 import { Spinner } from "react-bootstrap";
 import Landing from "../Landing/Landing";
+import Advertise from "../Advertise/Advertise";
 
 const Home = () => {
   const { data, loading, error } = useSelector((state) => state.data);
@@ -22,10 +23,11 @@ const Home = () => {
 
   return (
     <div>
-      <Container  >
+      
     
       <Landing/>
-      
+      <Advertise/>
+      <Container  >
       <Row>
         {loading ? 
         <div className={style.divison} >

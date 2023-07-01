@@ -150,6 +150,7 @@ const Header = ({ token }) => {
             Home
           </Link>
           <span>About Us</span>
+          <span>Products</span>
 
           <span className="relative">
             <span>Blog</span>
